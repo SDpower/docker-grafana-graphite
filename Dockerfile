@@ -43,7 +43,7 @@ RUN     git clone --depth=1 --branch master https://github.com/etsy/statsd.git /
 # Install Grafana
 RUN     mkdir /src/grafana                                                                                           &&\
         mkdir /opt/grafana                                                                                           &&\
-        curl https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.2.2.linux-amd64.tar.gz  \
+        curl https://dl.grafana.com/oss/release/grafana-6.2.5.linux-amd64.tar.gz  \
              -o /src/grafana.tar.gz                                                                                  &&\
         tar -xzf /src/grafana.tar.gz -C /opt/grafana --strip-components=1                                            &&\
         rm /src/grafana.tar.gz
@@ -89,7 +89,6 @@ RUN     cd /src                                                                 
 RUN 	mkdir /src/datasources                                                                                       &&\
         mkdir /src/dashboards
 ADD     ./grafana/datasources/* /src/datasources
-ADD     ./grafana/dashboards/* /src/dashboards/
 ADD     ./grafana/export-datasources-and-dashboards.sh /src/
 
 # Configure nginx and supervisord

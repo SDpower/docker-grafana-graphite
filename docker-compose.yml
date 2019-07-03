@@ -1,8 +1,9 @@
-version: '2'
+version: '3'
 services:
   grafana_graphite:
     build: .
     image: kamon/grafana_graphite
+    restart: always
     container_name: kamon-grafana-dashboard
     ports:
       - '80:80'
@@ -11,7 +12,7 @@ services:
       - '8126:8126'
       - '2003:2003'
     volumes:
-      - ./data/whisper:/opt/graphite/storage/whisper
-      - ./data/grafana:/opt/grafana/data
-      - ./log/graphite:/opt/graphite/storage/log
-      - ./log/supervisor:/var/log/supervisor
+      - ${GRAFANA_GRAPHITE_VAR_DIR}/data/whisper:/opt/graphite/storage/whisper
+      - ${GRAFANA_GRAPHITE_VAR_DIR}/data/grafana:/opt/grafana/data
+      - ${GRAFANA_GRAPHITE_VAR_DIR}/log/graphite:/opt/graphite/storage/log
+      - ${GRAFANA_GRAPHITE_VAR_DIR}/log/supervisor:/var/log/supervisor
