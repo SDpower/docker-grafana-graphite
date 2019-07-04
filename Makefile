@@ -24,7 +24,7 @@ pull :
 build :
 	docker-compose build
 
-up : prep build
+up :
 	docker-compose up -d
 
 down :
